@@ -1,0 +1,71 @@
+{
+  "name": "gt-identity",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "ethereum",
+    "blockchain",
+    "contract",
+    "solidity",
+    "web3"
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/brentertz/scapegoat/blob/master/LICENSE-MIT"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/BancoSabadell/gt-identity/issues"
+  },
+  "homepage": "https://github.com/BancoSabadell/gt-identity#readme",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/BancoSabadell/gt-identity.git"
+  },
+  "dependencies": {
+    "solc": "^0.4.6",
+    "web3": "^0.16.0",
+    "eslint": "^3.12.2",
+    "contract-deployer": "^1.0.1",
+    "bluebird": "^3.4.6"
+  },
+  "devDependencies": {
+    "bignumber.js": "^4.0.0",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "ethereumjs-testrpc": "^3.0.2",
+    "mocha": "^3.1.2"
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "script"
+    },
+    "rules": {
+      "no-unused-vars": [
+        "error",
+        {
+          "argsIgnorePattern": "^_"
+        }
+      ],
+      "indent": [
+        "error",
+        4
+      ],
+      "comma-dangle": [
+        "error",
+        {
+          "functions": "ignore"
+        }
+      ]
+    }
+  }
+}
