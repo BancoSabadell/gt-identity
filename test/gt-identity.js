@@ -173,17 +173,36 @@ describe('Identity contract', function () {
     });
 
     describe('Check proxy', () => {
-      it('check testContract', () => {
-          return testContract.testAsync("abc", 123, true, account2, { from: account1, gas: gas })
-              .should.eventually.satisfy(data => {
-                  return data[0] === "abc" &&
-                      data[1].equals(123) &&
-                      data[2] === true &&
-                      data[3] === account2 &&
-                      data[4] === account1;
-              }, 'incorrect document');
-      });
 
-      it('check proxy');
+        it('set values in TestContract', () => {
+            return testContract.testAsync("abc", 123, true, account2, { from: account1, gas: gas });
+        });
+
+        it('check values in TestContract', () => {
+            return testContract.checkAsync()
+                .should.eventually.satisfy(data => {
+                    return data[0] === "abc" &&
+                        data[1].equals(123) &&
+                        data[2] === true &&
+                        data[3] === account2 &&
+                        data[4] === account1;
+                }, 'incorrect document');
+        });
+
+        it('set values in TestContract using Proxy ', () => {
+            var data = testContract.test.getData("def", 456, false, account1);
+            return identity.executeAsync(testContract.address, 0, data, { from: account1, gas: gas });
+        });
+
+        it('check values in TestContract', () => {
+            return testContract.checkAsync()
+                .should.eventually.satisfy(data => {
+                    return data[0] === "def" &&
+                        data[1].equals(456) &&
+                        data[2] === false &&
+                        data[3] === account1 &&
+                        data[4] === identity.address;
+                }, 'incorrect document');
+        });
     });
 });
