@@ -22,7 +22,7 @@ where:
 * `destination`: Address of the contract you want to execute.
 * `value`: Amount of ether you want to send with the transaction
 * `data`: A byte array with the function name and parameters encoded. To calculate it, you need to use the function getData from the web3 library.
-For example, the following piece of code calculates the data value of the method `myMethod` from the contract `myContractInstance` with the parameters param1 and param2.
+For example, the following piece of code calculates the data value of the method `myMethod` from the contract `myContractInstance` with the parameters `param1` and `param2`.
     ```javascript
       var data = myContractInstance.myMethod.getData(param1, param2);
     ```
@@ -39,6 +39,23 @@ The identity contract can be executed from different addresses in diferent devic
 #### Key recovery
 A trusted party can be added in the case that the owners lose their private keys.
 
-`setKeyRecovery(address _keyRecovery)`: To set the address of the trusted party that will be able to add a new owner
+`setKeyRecovery(address _keyRecovery)`: To set the address of the trusted party that will be able to add a new owner.
 
-`recoverKey(address newOwner)`: Adds a new address as an owner. This function can only be executed by the trusted party.
+`recoverKey(address newOwner)`: Allows the trusted party to add a new address as an owner.
+
+## Example
+Using an Identity contract `yourIdentity`, lets execute the function `yourFunction(123, "abc")` of the contract `yourContract`:
+
+```javascript
+  // The contract you want to execute using your identity contract.
+  var yourContract = web3.eth.contract(yourContractAbi).at(yourContractAddress);
+
+  // Your identity contract. You need to know the address where it was deployed.
+  var yourIdentity = web3.eth.contract(identityContractAbi).at(yourIdentityAddress);
+
+  // [...]
+
+  // Execution of the function "yourFunction(123, abc)"
+  var data = yourContract.yourFunction.getData(123, "abc");
+  yourIdentity.execute(yourContractAddress, 0, data);
+```
