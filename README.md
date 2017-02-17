@@ -20,7 +20,7 @@ A javascript example of how this could be done:
 where:
 * `idContract`: You identity contract.
 * `destination`: Address of the contract you want to execute.
-* `value`: Amount of ether you want to send with the transaction
+* `value`: Amount of ether you want to send with the transaction.
 * `data`: A byte array with the function name and parameters encoded. To calculate it, you need to use the function getData from the web3 library.
 For example, the following piece of code calculates the data value of the method `myMethod` from the contract `myContractInstance` with the parameters `param1` and `param2`.
     ```javascript
